@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.apprelacionamento"
+    namespace = "com.br.apprelacionamento"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.apprelacionamento"
+        applicationId = "com.br.apprelacionamento"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -25,6 +25,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -32,7 +33,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
