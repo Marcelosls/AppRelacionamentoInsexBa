@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@+id/edtPrimeiroNome"
+            android:id="@+id/edtFirstName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Primeiro nome"
@@ -53,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@+id/edtSobrenome"
+            android:id="@+id/edtLastName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Sobrenome"
@@ -64,12 +64,12 @@
             android:backgroundTint="#800020"
             android:minHeight="48dp"
             android:paddingVertical="8dp"
-            app:layout_constraintTop_toBottomOf="@id/edtPrimeiroNome"
+            app:layout_constraintTop_toBottomOf="@id/edtFirstName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@+id/edtDataNascimento"
+            android:id="@+id/edtBirthDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Data de nascimento"
@@ -81,7 +81,7 @@
             android:backgroundTint="#800020"
             android:minHeight="48dp"
             android:paddingVertical="8dp"
-            app:layout_constraintTop_toBottomOf="@id/edtSobrenome"
+            app:layout_constraintTop_toBottomOf="@id/edtLastName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -98,12 +98,12 @@
             android:backgroundTint="#800020"
             android:minHeight="48dp"
             android:paddingVertical="8dp"
-            app:layout_constraintTop_toBottomOf="@id/edtDataNascimento"
+            app:layout_constraintTop_toBottomOf="@id/edtBirthDate"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@+id/edtConfirmarEmail"
+            android:id="@+id/edtConfirmEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Confirmar E-mail"
@@ -120,7 +120,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@+id/edtSenha"
+            android:id="@+id/edtPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Senha"
@@ -132,35 +132,35 @@
             android:backgroundTint="#800020"
             android:minHeight="48dp"
             android:paddingVertical="8dp"
-            app:layout_constraintTop_toBottomOf="@id/edtConfirmarEmail"
+            app:layout_constraintTop_toBottomOf="@id/edtConfirmEmail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <EditText
-            android:id="@+id/edtEndereco"
+
+        <Spinner
+            android:id="@+id/spinnerGender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Endereço"
-            android:textColorHint="#800020"
-            android:textColor="#800020"
-            android:layout_marginTop="8dp"
             android:layout_marginHorizontal="32dp"
-            android:minHeight="48dp"
-            android:paddingVertical="8dp"
-            app:layout_constraintTop_toBottomOf="@id/edtSenha"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#800020"
+            android:popupBackground="#FFFFFF"
+            android:spinnerMode="dropdown"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/edtPassword" />
 
         <CheckBox
             android:id="@+id/ckTermos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:minHeight="48dp"
             android:text="Li e concordo com os Termos e Condições."
             android:textColor="#800020"
-            android:minHeight="48dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/edtEndereco"
-            app:layout_constraintStart_toStartOf="@id/edtEndereco" />
+            app:layout_constraintStart_toStartOf="@id/spinnerGender"
+            app:layout_constraintTop_toBottomOf="@id/spinnerGender" />
 
         <CheckBox
             android:id="@+id/ckPrivacidade"
@@ -185,7 +185,7 @@
             app:layout_constraintStart_toStartOf="@id/ckPrivacidade" />
 
         <Button
-            android:id="@+id/btnConfirmar"
+            android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Confirmar"
