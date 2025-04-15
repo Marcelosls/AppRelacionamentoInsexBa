@@ -48,6 +48,7 @@ public class CadastroActivity extends AppCompatActivity {
         EditText edtSobrenome = findViewById(R.id.edtSobrenome);
         EditText edtDataNascimento = findViewById(R.id.edtDataNascimento);
         EditText edtEmail = findViewById(R.id.edtEmail);
+        EditText edtConfirmarEmail = findViewById(R.id.edtConfirmarEmail); // <-- Adicionado
         EditText edtSenha = findViewById(R.id.edtSenha);
         edtEndereco = findViewById(R.id.edtEndereco);
 
@@ -59,10 +60,8 @@ public class CadastroActivity extends AppCompatActivity {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Aplica máscara automática de data ao campo de nascimento
         aplicarMascaraData(edtDataNascimento);
 
-        // Quando tocar no campo de endereço, pedir localização
         edtEndereco.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 solicitarPermissaoLocalizacao();
@@ -74,12 +73,16 @@ public class CadastroActivity extends AppCompatActivity {
             String sobrenome = edtSobrenome.getText().toString().trim();
             String dataNascimento = edtDataNascimento.getText().toString().trim();
             String email = edtEmail.getText().toString().trim();
+            String confirmarEmail = edtConfirmarEmail.getText().toString().trim(); // <-- Adicionado
             String senha = edtSenha.getText().toString().trim();
             String endereco = edtEndereco.getText().toString().trim();
 
             if (nome.isEmpty() || sobrenome.isEmpty() || dataNascimento.isEmpty()
-                    || email.isEmpty() || senha.isEmpty() || endereco.isEmpty()) {
+                    || email.isEmpty() || confirmarEmail.isEmpty() || senha.isEmpty() || endereco.isEmpty()) {
                 Toast.makeText(this, "Preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
+            } else if (!email.equals(confirmarEmail)) {
+                edtConfirmarEmail.setError("Os e-mails não coincidem");
+                edtConfirmarEmail.requestFocus();
             } else if (!ckTermos.isChecked() || !ckPrivacidade.isChecked()) {
                 Toast.makeText(this, "Você precisa aceitar os termos e a política de privacidade.", Toast.LENGTH_SHORT).show();
             } else {
