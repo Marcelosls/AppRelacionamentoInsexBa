@@ -31,4 +31,7 @@ Projeto acadêmico de um aplicativo de relacionamento desenvolvido em Java utili
 
 - Desenvolvido com foco em boas práticas, modularização e clareza no código
 
+API: https://github.com/FilipeMagal/App_Relacionamento_INSEX
+
+
 
