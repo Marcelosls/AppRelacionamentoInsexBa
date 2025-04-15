@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">AppRelacionamento</string>
+
+    <string-array name="gender_array">
+        <item>Selecione um Genero</item>
+        <item>Masculino</item>
+        <item>Feminino</item>
+        <item>Não-Binário</item>
+    </string-array>
 </resources>
+
+

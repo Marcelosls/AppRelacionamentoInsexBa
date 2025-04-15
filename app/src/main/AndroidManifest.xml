@@ -6,6 +6,7 @@
     <!-- 🛡️ Permissões -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +21,7 @@
 
         <!-- Tela inicial do app -->
         <activity
-            android:name=".CadastroActivity"
+            android:name=".activities.RegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
