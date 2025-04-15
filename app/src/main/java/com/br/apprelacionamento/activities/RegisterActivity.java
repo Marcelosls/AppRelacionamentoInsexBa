@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
             edtPassword, edtBirthDate;
     private Spinner spinnerGender;// Spinner de gênero
     private Button btnRegister;// Botão de registro
-    private String selectedGender;// Variável para armazenar o gênero selecionado
+    //private String selectedGender;// Variável para armazenar o gênero selecionado
 
     // Configura a activity
     @Override
@@ -93,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
         spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedGender = parent.getItemAtPosition(position).toString();
+                //selectedGender = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -144,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         String formattedDate = formatDateToBackend(birthDate);
         if (formattedDate == null) {
-            Toast.makeText(this, "Data de nascimento inválida. Use dd/MM/yyyy.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Data de nascimento inválida..", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -157,8 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
                 email,
                 formattedDate,
                 genderForBackend,
-                "Usuario",
-                1
+                "Usuario"
         );
 
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
