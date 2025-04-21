@@ -1,6 +1,7 @@
 package com.br.apprelacionamento.activities;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -168,7 +169,8 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(RegisterActivity.this, "Usuário registrado com sucesso!", Toast.LENGTH_LONG).show();
-                    finish(); // fecha a tela
+                    startActivity(new Intent(RegisterActivity.this, InicioActivity.class));
+                    //finish(); // fecha a tela
                 } else {
                     Toast.makeText(RegisterActivity.this, "Erro ao registrar. Código: " + response.code(), Toast.LENGTH_LONG).show();
                 }

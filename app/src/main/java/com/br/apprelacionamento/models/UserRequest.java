@@ -5,17 +5,17 @@ public class UserRequest {
     private String lastName;
     private String password;
     private String email;
-    private String birth_Data; // formato "yyyy-MM-dd"
+    private String birthData; // formato "yyyy-MM-dd"
     private String gender;     // Ex: "Masculino", "Feminino", "Nao_Binario"
     private String typeUser;   // Sempre "Usuario"
 
     public UserRequest(String firstName, String lastName, String password, String email,
-                       String birth_Data, String gender, String typeUser) {
+                       String birthData, String gender, String typeUser) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.birth_Data = birth_Data;
+        this.birthData = birthData;
         this.gender = gender;
         this.typeUser = typeUser;
     }

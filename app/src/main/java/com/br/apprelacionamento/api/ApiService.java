@@ -1,5 +1,7 @@
 package com.br.apprelacionamento.api;
 
+import com.br.apprelacionamento.models.LoginRequest;
+import com.br.apprelacionamento.models.LoginResponse;
 import com.br.apprelacionamento.models.UserRequest;
 
 import okhttp3.ResponseBody;
@@ -8,6 +10,9 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiService {
-    @POST("/insexba/register")
+    @POST("/auth/register")
     Call<ResponseBody> registerUser(@Body UserRequest userRequest);
+
+    @POST("/auth/login")
+    Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
 }
