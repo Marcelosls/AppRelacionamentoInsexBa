@@ -20,13 +20,6 @@ Projeto acadêmico de um aplicativo de relacionamento desenvolvido em Java utili
 - Sistema de combinação entre usuários
 - Chat entre perfis compatíveis
 
-## 🚧 Status
-
-✅ Repositório criado  
-🔜 Protótipo implementado na tela de cadastro  
-🔜 Integração com a API  
-🔜 Implementação da lógica de interesses e combinação  
-
 ## 📎 Observações
 
 - Desenvolvido com foco em boas práticas, modularização e clareza no código
