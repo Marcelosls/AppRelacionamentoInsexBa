@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- FOTO DE PERFIL -->
+        <ImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/perfil_padrao"
+            android:scaleType="centerCrop"
+            android:background="@android:color/darker_gray"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Foto de Perfil" />
+
+        <!-- NOME, SOBRENOME, IDADE -->
+        <TextView
+            android:id="@+id/textFirstLastNameAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome Sobrenome, Idade"
+            android:textColor="#800020"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp" />
+
+        <!-- INTERESSES -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewInterests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp" />
+
+        <!-- CAMPOS EDITÁVEIS -->
+
+        <!-- GÊNERO -->
+        <TextView
+            android:id="@+id/labelGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gênero:"
+            android:textColor="#800020"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFBFB"
+            android:textColor="#800020"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- ETNIA -->
+        <TextView
+            android:id="@+id/labelEthnicity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Etnia:"
+            android:textColor="#800020"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editEthnicity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFBFB"
+            android:textColor="#800020"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- ESCOLARIDADE -->
+        <TextView
+            android:id="@+id/labelEducation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escolaridade:"
+            android:textColor="#800020"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editEducation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFBFB"
+            android:textColor="#800020"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- ESTADO CIVIL -->
+        <TextView
+            android:id="@+id/labelMaritalStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado Civil:"
+            android:textColor="#800020"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editMaritalStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFBFB"
+            android:textColor="#800020"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- PROFISSÃO -->
+        <TextView
+            android:id="@+id/labelProfession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profissão:"
+            android:textColor="#800020"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editProfession"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFBFB"
+            android:textColor="#800020"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- BIO -->
+        <TextView
+            android:id="@+id/labelBio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bio:"
+            android:textColor="#800020"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editBio"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#EEEEEE"
+            android:textColor="#800020"
+            android:textSize="14sp"
+            android:gravity="top|start"
+            android:padding="8dp"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="24dp" />
+    </LinearLayout>
+
+</ScrollView>

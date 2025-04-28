@@ -3,7 +3,6 @@ package com.br.apprelacionamento.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.br.apprelacionamento.R;
 import com.br.apprelacionamento.api.AuthenticationDTO;
 import com.br.apprelacionamento.api.LoginResponseDTO;
+import com.br.apprelacionamento.fragments.PerfilFragment;
 import com.google.gson.Gson;
 
 import okhttp3.Call;
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     runOnUiThread(() -> {
                         Toast.makeText(LoginActivity.this, "Login bem-sucedido!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, TelaPrincipalActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainNavigationActivity.class));
                         finish();
                     });
                 } else {
