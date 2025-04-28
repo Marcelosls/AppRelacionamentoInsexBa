@@ -33,22 +33,19 @@
             android:name=".activities.RegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize|stateHidden">
-            <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
         </activity>
 
-        <!-- Tela inicial do app -->
-        <activity android:name=".activities.LoginActivity"
+        <!-- Tela de login do app -->
+        <activity
+            android:name=".activities.LoginActivity"
             android:exported="true">
         </activity>
 
-        <!-- Tela principal provisoria do app -->
-        <activity android:name=".activities.TelaPrincipalActivity"
+        <!-- Tela principal com o ViewPager (onde estão os fragments) -->
+        <activity
+            android:name=".activities.MainNavigationActivity"
             android:exported="true">
         </activity>
-
 
     </application>
 

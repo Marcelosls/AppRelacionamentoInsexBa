@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.br.apprelacionamento.R;
 import com.br.apprelacionamento.api.ApiClient;
 import com.br.apprelacionamento.api.ApiService;
+import com.br.apprelacionamento.fragments.PerfilFragment;
 import com.br.apprelacionamento.models.UserRequest;
 
 import java.text.ParseException;
@@ -169,7 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(RegisterActivity.this, "Usuário registrado com sucesso!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(RegisterActivity.this, InicioActivity.class));
+                    startActivity(new Intent(RegisterActivity.this, PerfilFragment.class));
                     //finish(); // fecha a tela
                 } else {
                     Toast.makeText(RegisterActivity.this, "Erro ao registrar. Código: " + response.code(), Toast.LENGTH_LONG).show();
