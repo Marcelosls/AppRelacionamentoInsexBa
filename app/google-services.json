@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "632966725531",
+    "project_id": "novoprojetos-92ea7",
+    "storage_bucket": "novoprojetos-92ea7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632966725531:android:93399f6b1c1b498c44ab3e",
+        "android_client_info": {
+          "package_name": "com.br.apprelacionamento"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLBSQU_IS1CfB7sKAy2wZMstQJVfsknsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
