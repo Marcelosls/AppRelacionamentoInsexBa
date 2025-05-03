@@ -8,7 +8,7 @@
         android:layout_gravity="center"
         android:text="contatos"
         android:textSize="24sp"
-        android:textColor="#800020"
+        android:textColor="@color/outros"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </FrameLayout>

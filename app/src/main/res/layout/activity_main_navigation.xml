@@ -10,11 +10,24 @@
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="41dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:src="@drawable/logo_app_transparente"
-        android:contentDescription="Logo do App" />
+        android:contentDescription="Logo do App"
+        android:src="@drawable/logo_app_transparente" />
+
+    <!-- Texto abaixo da logo -->
+    <TextView
+        android:id="@+id/txtNomeApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"
+        android:text="ENLACE"
+        android:textColor="#D2B162"
+        android:textSize="14sp"
+        android:fontFamily="@font/playfairdisplay_italic"
+        android:textStyle="bold" />
 
     <!-- ViewPager2 no meio -->
     <androidx.viewpager2.widget.ViewPager2
@@ -32,4 +45,5 @@
         app:itemIconTint="@color/bottom_nav_selector"
         app:itemTextColor="@color/bottom_nav_selector"
         android:background="?android:attr/windowBackground" />
+
 </LinearLayout>
