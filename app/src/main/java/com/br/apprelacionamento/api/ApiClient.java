@@ -9,10 +9,16 @@ public class ApiClient {
     public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8080/") // IP para acessar o localhost do host no emulador
+                    .baseUrl("http://10.0.2.2:8080/") // IP para o localhost no Android Emulator
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
+
+    // Método para retornar a interface da API
+    public static ApiInterface getApiService() {
+        return getClient().create(ApiInterface.class);
+    }
 }
+

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.br.apprelacionamento.activities.LoginActivity;
 import com.br.apprelacionamento.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 

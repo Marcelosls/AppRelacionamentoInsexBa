@@ -44,6 +44,7 @@ dependencies {
     implementation ("com.google.android.material:material:1.11.0")
     implementation(libs.viewpager2)
     implementation("com.google.firebase:firebase-messaging:23.4.1")
+    implementation(libs.firebase.messaging)
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
