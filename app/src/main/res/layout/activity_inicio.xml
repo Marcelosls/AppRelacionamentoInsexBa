@@ -24,13 +24,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtBoasVindas"
+            android:id="@+id/txtNomeApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="184dp"
-            android:text="Bem-vindo(a)!"
-            android:textColor="#800020"
-            android:textSize="24sp"
+            android:layout_marginTop="156dp"
+            android:text="ENLACE"
+            android:textColor="#D2B162"
+            android:textSize="28sp"
+            android:fontFamily="@font/playfairdisplay_italic"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -43,14 +44,14 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="56dp"
-            android:backgroundTint="#800020"
+            android:backgroundTint="#183A5A"
             android:minHeight="48dp"
             android:text="Login"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtBoasVindas" />
+            app:layout_constraintTop_toBottomOf="@id/txtNomeApp" />
 
         <Button
             android:id="@+id/btnCadastro"
@@ -58,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="Cadastre-se"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#800020"
+            android:backgroundTint="#183A5A"
             android:minHeight="48dp"
             android:layout_marginTop="16dp"
             android:layout_marginHorizontal="32dp"

@@ -2,15 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.AppRelacionamento" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#7F0020</item>
-        <item name="colorPrimaryVariant">#7F0020</item>
+        <item name="colorPrimary">#183A5A</item>
+        <item name="colorPrimaryVariant">#183A5A</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">#183A5A</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
