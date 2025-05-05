@@ -161,8 +161,8 @@ public class RegisterActivity extends AppCompatActivity {
                 "Usuario"
         );
 
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<ResponseBody> call = apiInterface.registerUser(userRequest);
+        ApiInterface api = ApiClient.getApiServiceNoAuth();
+        Call<ResponseBody> call = api.registerUser(userRequest);
 
         call.enqueue(new Callback<>() {
             @Override

@@ -1,5 +1,38 @@
 <resources>
     <string name="app_name">AppRelacionamento</string>
+    <string-array name="desired_relationship_array">
+        <item>Selecione um o relacionamento desejado</item>
+        <item>Namoro</item>
+        <item>Casamento</item>
+        <item>Relação_Aberta</item>
+        <item>Amizade</item>
+    </string-array>
+
+    <string-array name="ethnicity_array">
+        <item>Selecione uma etnia</item>
+        <item>Branco(a)</item>
+        <item>Preto(a)</item>
+        <item>Pardo(a)</item>
+        <item>Amarelo(a)</item>
+        <item>Indígena(a)</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="education_array">
+        <item>Selecione uma escolaridade</item>
+        <item>Ensino Fundamental</item>
+        <item>Ensino Médio</item>
+        <item>Ensino Superior</item>
+        <item>Pós-Graduação</item>
+    </string-array>
+
+    <string-array name="marital_status_array">
+        <item>Selecione um estado civil</item>
+        <item>Solteiro(a)</item>
+        <item>Casado(a)</item>
+        <item>Divorciado(a)</item>
+        <item>Viúvo(a)</item>
+    </string-array>
 
     <string-array name="gender_array">
         <item>Selecione um Genero</item>

@@ -1,6 +1,7 @@
 package com.br.apprelacionamento.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -36,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.edtSenhaLogin);
         loginButton = findViewById(R.id.btnEntrar);
 
-        api = ApiClient.getApiService();
+        api = ApiClient.getApiServiceNoAuth();
 
         loginButton.setOnClickListener(v -> loginUser());
     }
@@ -58,11 +59,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful()) {
                     String token = response.body().getToken();
+
+                    SharedPreferences preferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+                    preferences.edit().putString("authToken", token).apply();
+
+
                     Log.d("LOGIN", "Token: " + token);
                     Toast.makeText(LoginActivity.this, "Login bem-sucedido!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, MainNavigationActivity.class));
                     finish();
-                    //createDummyProfile(token); // Cria perfil de teste após login
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Erro ao fazer login", Toast.LENGTH_SHORT).show();
