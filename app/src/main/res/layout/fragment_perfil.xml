@@ -68,14 +68,14 @@
             android:textColor="@color/outros"
             android:textSize="16sp" />
 
+        <!-- ESCOLARIDADE -->
         <Spinner
             android:id="@+id/spinnerEthnicity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFBFB"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:background="#FFFBFB" />
 
-        <!-- ESCOLARIDADE -->
         <TextView
             android:id="@+id/labelEducation"
             android:layout_width="wrap_content"
