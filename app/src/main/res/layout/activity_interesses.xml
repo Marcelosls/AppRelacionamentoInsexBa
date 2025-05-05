@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_love_logo"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/icone"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="O que curte?"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#800020"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Lista de CheckBoxes -->
+        <CheckBox
+            android:id="@+id/checkboxBelezaNatural"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Beleza Natural"
+            style="@style/EstiloCheckBox" />
+        <CheckBox
+            android:id="@+id/checkboxAtividadeFisica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atividade física"
+            style="@style/EstiloCheckBox" />
+        <CheckBox
+            android:id="@+id/checkboxDocumentarios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Documentários"
+            style="@style/EstiloCheckBox" />
+
+        <CheckBox
+            android:id="@+id/checkboxCulinaria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Culinária"
+            style="@style/EstiloCheckBox" />
+
+        <CheckBox
+            android:id="@+id/checkboxFilmes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Filmes"
+            style="@style/EstiloCheckBox" />
+
+        <CheckBox
+            android:id="@+id/checkboxSeries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Séries"
+            style="@style/EstiloCheckBox" />
+
+        <CheckBox
+            android:id="@+id/checkboxFestasRua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Festas na rua"
+            style="@style/EstiloCheckBox" />
+
+        <CheckBox
+            android:id="@+id/checkboxMomentosCasa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Momentos em casa"
+            style="@style/EstiloCheckBox" />
+
+        <CheckBox
+            android:id="@+id/checkboxViagens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Viagens"
+            style="@style/EstiloCheckBox" />
+
+
+
+        <!-- Botão -->
+        <Button
+            android:id="@+id/btnContinuar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONTINUAR"
+            android:backgroundTint="#800020"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+</ScrollView>
