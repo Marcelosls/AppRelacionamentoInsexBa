@@ -2,7 +2,10 @@ package com.br.apprelacionamento.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +20,19 @@ import com.br.apprelacionamento.api.ApiInterface;
 import com.br.apprelacionamento.models.LoginRequest;
 import com.br.apprelacionamento.models.LoginResponse;
 import com.br.apprelacionamento.models.ProfileRequest;
+import com.br.apprelacionamento.models.ProfileResponse;
 
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,8 +76,14 @@ public class LoginActivity extends AppCompatActivity {
                     String token = response.body().getToken();
 
                     SharedPreferences preferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-                    preferences.edit().putString("authToken", token).apply();
+                    int userId = extractUserIdFromToken(token);
 
+                    preferences.edit()
+                            .putString("authToken", token)
+                            .putInt("userId", userId)
+                            .apply();
+
+                    enviarDadosPadraoSePerfilNaoExistir(token);
 
                     Log.d("LOGIN", "Token: " + token);
                     Toast.makeText(LoginActivity.this, "Login bem-sucedido!", Toast.LENGTH_SHORT).show();
@@ -80,5 +101,113 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void enviarDadosPadraoSePerfilNaoExistir(String token) {
+        ApiInterface authApi = ApiClient.getApiServiceWithAuth(LoginActivity.this); // Usa token
+
+        SharedPreferences preferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        int userId = preferences.getInt("userId", -1);
+
+        if (userId == -1) {
+            Toast.makeText(this, "ID do usuário não encontrado", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        authApi.getProfile("Bearer " + token, userId).enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (!response.isSuccessful() || response.body() == null) {
+                    // Perfil ainda não criado → criar perfil padrão
+                    criarPerfilPadrao(token);
+                } else {
+                    Log.d("LOGIN", "Perfil já existente.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                Log.e("LOGIN", "Erro ao verificar perfil: " + t.getMessage());
+            }
+        });
+    }
+
+    private void criarPerfilPadrao(String token) {
+        ApiInterface authApi = ApiClient.getApiServiceWithAuth(LoginActivity.this);
+
+        MultipartBody.Part foto = getDefaultProfilePicture();
+
+        Call<ResponseBody> call = authApi.createProfile(
+                "Bearer " + token,
+                toRequestBody("Outro"),
+                toRequestBody("Ensino_Superior"),
+                toRequestBody("Solteiro"),
+                toRequestBody("Namoro"),
+                toRequestBody("Oi, estou usando Encontros"),
+                toRequestBody("Não informado"),
+                foto,
+                toRequestBody("1"),
+                toRequestBody("falta cadastrar")
+        );
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Log.d("PERFIL", "Perfil criado com sucesso!");
+                } else {
+                    Log.e("PERFIL", "Erro ao criar perfil: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("PERFIL", "Falha na criação do perfil: " + t.getMessage());
+            }
+        });
+    }
+
+
+    private MultipartBody.Part getDefaultProfilePicture() {
+        try {
+            // Carrega o drawable como Bitmap
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.perfil_padrao);
+
+            // Cria um arquivo temporário
+            File file = new File(getCacheDir(), "perfil_padrao.jpg");
+            FileOutputStream fos = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.close();
+
+            // Cria o RequestBody e Multipart
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
+            return MultipartBody.Part.createFormData("profilePicture", file.getName(), requestFile);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    private RequestBody toRequestBody(String value) {
+        return RequestBody.create(MediaType.parse("text/plain"), value);
+    }
+
+
+    private int extractUserIdFromToken(String token) {
+        try {
+            String[] parts = token.split("\\.");
+            if (parts.length != 3) return -1;
+
+            String payload = new String(Base64.decode(parts[1], Base64.URL_SAFE), StandardCharsets.UTF_8);
+            JSONObject jsonObject = new JSONObject(payload);
+
+            return jsonObject.getInt("id"); // ou "sub", "userId", etc., dependendo do campo usado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 
 }
