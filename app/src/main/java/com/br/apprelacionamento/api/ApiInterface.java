@@ -1,5 +1,6 @@
 package com.br.apprelacionamento.api;
 
+import com.br.apprelacionamento.models.InterestsRequest;
 import com.br.apprelacionamento.models.LoginRequest;
 import com.br.apprelacionamento.models.LoginResponse;
 import com.br.apprelacionamento.models.ProfileRequest;
@@ -42,6 +43,10 @@ public interface ApiInterface {
 
     @GET("insexba/user/{userId}")
     Call<ProfileResponse> getProfile(@Header("Authorization") String token, @Path("userId") int userId);
+
+    @POST("/insexba/interests")
+    Call<Void> createInterests(@Body InterestsRequest interestsRequest);
+
 
 
 }

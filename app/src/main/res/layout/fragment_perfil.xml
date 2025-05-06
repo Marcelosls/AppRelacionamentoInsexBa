@@ -27,7 +27,7 @@
 
         <!-- NOME, SOBRENOME, IDADE -->
         <TextView
-            android:id="@+id/textFirstLastNameAge"
+            android:id="@+id/textNameAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nome Sobrenome, Idade"
@@ -45,123 +45,79 @@
 
         <!-- GÊNERO -->
         <TextView
-            android:id="@+id/labelGender"
+            android:id="@+id/textGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gênero:"
             android:textColor="@color/outros"
             android:textSize="16sp" />
 
-        <Spinner
-            android:id="@+id/spinnerGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFBFB"
-            android:layout_marginBottom="16dp" />
-
-        <!-- ETNIA -->
+                <!-- ETNIA -->
         <TextView
-            android:id="@+id/labelEthnicity"
+            android:id="@+id/textEthnicity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Etnia:"
             android:textColor="@color/outros"
             android:textSize="16sp" />
 
         <!-- ESCOLARIDADE -->
-        <Spinner
-            android:id="@+id/spinnerEthnicity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="#FFFBFB" />
-
         <TextView
-            android:id="@+id/labelEducation"
+            android:id="@+id/textEducation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Escolaridade:"
             android:textColor="@color/outros"
             android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/spinnerEducation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFBFB"
-            android:layout_marginBottom="16dp" />
 
         <!-- ESTADO CIVIL -->
         <TextView
-            android:id="@+id/labelMaritalStatus"
+            android:id="@+id/textMaritalStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estado Civil:"
             android:textColor="@color/outros"
             android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/spinnerMaritalStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFBFB"
-            android:layout_marginBottom="16dp" />
 
         <!-- RELAÇÃO DESEJADA -->
         <TextView
-            android:id="@+id/labelDesiredRelationship"
+            android:id="@+id/textDesiredRelationship"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Relação Desejada:"
             android:textColor="@color/outros"
             android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/spinnerDesiredRelationship"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFBFB"
-            android:layout_marginBottom="16dp" />
 
         <!-- PROFISSÃO -->
         <TextView
-            android:id="@+id/labelProfession"
+            android:id="@+id/textProfession"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profissão:"
             android:textColor="@color/outros"
             android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/editProfession"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFBFB"
-            android:textColor="@color/outros"
-            android:textSize="14sp"
-            android:padding="8dp"
-            android:layout_marginBottom="16dp" />
 
         <!-- BIO -->
         <TextView
-            android:id="@+id/labelBio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bio:"
-            android:textColor="@color/outros"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/editBio"
+            android:id="@+id/textBio"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="#EEEEEE"
+            android:layout_height="wrap_content"
             android:textColor="@color/outros"
-            android:textSize="14sp"
-            android:gravity="top|start"
-            android:padding="8dp"
-            android:backgroundTint="#FFFFFF"
-            android:layout_marginBottom="24dp" />
+            android:text="Bio"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:layout_width="216dp"
+            android:layout_height="53dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/outros"
+            android:drawableLeft="@android:drawable/ic_menu_edit"
+            android:drawablePadding="8dp"
+            android:paddingVertical="12dp"
+            android:text="EDITAR PERFIL"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 </ScrollView>
 

@@ -94,8 +94,6 @@
             android:text="Viagens"
             style="@style/EstiloCheckBox" />
 
-
-
         <!-- Botão -->
         <Button
             android:id="@+id/btnContinuar"

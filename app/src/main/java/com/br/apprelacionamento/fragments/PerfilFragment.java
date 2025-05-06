@@ -1,14 +1,23 @@
 package com.br.apprelacionamento.fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,22 +26,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.br.apprelacionamento.R;
+import com.br.apprelacionamento.activities.EditarPerfilActivity;
+import com.br.apprelacionamento.adapter.EnumConverter;
 import com.br.apprelacionamento.adapter.InterestsAdapter;
+import com.br.apprelacionamento.api.ApiClient;
+import com.br.apprelacionamento.api.ApiInterface;
+import com.br.apprelacionamento.models.ProfileResponse;
+import com.google.android.material.imageview.ShapeableImageView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PerfilFragment extends Fragment {
 
-    private TextView textFirstLastNameAge;
+    private ShapeableImageView imageProfile;
+    private TextView textNameAge, textGender, textEthnicity, textEducation,
+            textMaritalStatus, textDesiredRelationship, textProfession, textBio;
     private RecyclerView recyclerViewInterests;
+    private InterestsAdapter interestsAdapter;
+    private List<String> interests = new ArrayList<>();
 
-    // Spinners
-    private Spinner spinnerGender, spinnerEthnicity, spinnerEducation, spinnerMaritalStatus, spinnerDesiredRelationship;
-
-    public PerfilFragment() {
-        // Construtor vazio obrigatório
-    }
 
     @Nullable
     @Override
@@ -40,70 +58,80 @@ public class PerfilFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
-        // Nome + idade
-        textFirstLastNameAge = view.findViewById(R.id.textFirstLastNameAge);
-        textFirstLastNameAge.setText("Marcelo Leal, 23");
+        Button btnEditProfile = view.findViewById(R.id.btnEditProfile);
+        btnEditProfile.setOnClickListener(v -> {
+            // Inicia a Activity de edição de perfil
+            Intent intent = new Intent(requireContext(), EditarPerfilActivity.class);
+            startActivity(intent);
+        });
 
-        // Interesses
+        imageProfile = view.findViewById(R.id.imageProfile);
+        textNameAge = view.findViewById(R.id.textNameAge);
+        textGender = view.findViewById(R.id.textGender);
+        textEthnicity = view.findViewById(R.id.textEthnicity);
+        textEducation = view.findViewById(R.id.textEducation);
+        textMaritalStatus = view.findViewById(R.id.textMaritalStatus);
+        textDesiredRelationship = view.findViewById(R.id.textDesiredRelationship);
+        textProfession = view.findViewById(R.id.textProfession);
+        textBio = view.findViewById(R.id.textBio);
+
         recyclerViewInterests = view.findViewById(R.id.recyclerViewInterests);
-        List<String> interesses = Arrays.asList("Cinema", "Leitura", "Esportes", "Tecnologia", "Música");
         recyclerViewInterests.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewInterests.setAdapter(new InterestsAdapter(interesses));
+        interestsAdapter = new InterestsAdapter(interests);
+        recyclerViewInterests.setAdapter(interestsAdapter);
 
-        // Inicializar Spinners
-        spinnerGender = view.findViewById(R.id.spinnerGender);
-        spinnerEthnicity = view.findViewById(R.id.spinnerEthnicity);
-        spinnerEducation = view.findViewById(R.id.spinnerEducation);
-        spinnerMaritalStatus = view.findViewById(R.id.spinnerMaritalStatus);
-        spinnerDesiredRelationship = view.findViewById(R.id.spinnerDesiredRelationship);
-
-        setupConfirmableSpinner(spinnerGender, R.array.gender_array);
-        setupConfirmableSpinner(spinnerEthnicity, R.array.ethnicity_array);
-        setupConfirmableSpinner(spinnerEducation, R.array.education_array);
-        setupConfirmableSpinner(spinnerMaritalStatus, R.array.marital_status_array);
-        setupConfirmableSpinner(spinnerDesiredRelationship, R.array.desired_relationship_array);
+        carregarPerfil();
 
         return view;
+
+
     }
 
-    private void setupConfirmableSpinner(Spinner spinner, int arrayResId) {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                requireContext(),
-                arrayResId,
-                android.R.layout.simple_spinner_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+    private void carregarPerfil() {
+        SharedPreferences preferences = requireActivity().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
+        String token = preferences.getString("authToken", "");
+        int userId = preferences.getInt("userId", -1);
 
-        final int[] previousPosition = {spinner.getSelectedItemPosition()};
-        final boolean[] isFirstSelection = {true};
+        if (token.isEmpty() || userId == -1) return;
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ApiInterface api = ApiClient.getApiServiceWithAuth(requireContext());
+        Call<ProfileResponse> call = api.getProfile("Bearer " + token, userId);
+        call.enqueue(new Callback<ProfileResponse>() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (isFirstSelection[0]) {
-                    isFirstSelection[0] = false;
-                    previousPosition[0] = position;
-                    return;
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ProfileResponse profile = response.body();
+                    preencherCampos(profile);
+                } else {
+                    Toast.makeText(getContext(), "Erro ao carregar perfil", Toast.LENGTH_SHORT).show();
                 }
-
-                if (position == previousPosition[0]) return;
-
-                new AlertDialog.Builder(requireContext())
-                        .setTitle("Confirmar alteração")
-                        .setMessage("Deseja alterar o valor para \"" + parent.getItemAtPosition(position) + "\"?")
-                        .setPositiveButton("✔", (dialog, which) -> {
-                            previousPosition[0] = position;
-                        })
-                        .setNegativeButton("✖", (dialog, which) -> {
-                            spinner.setSelection(previousPosition[0]);
-                        })
-                        .setCancelable(false)
-                        .show();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Falha: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
+    }
+
+    private void preencherCampos(ProfileResponse profile) {
+        textNameAge.setText(profile.getFirstName() + " " + profile.getLastName() + ", " + profile.getAge());
+        textGender.setText("Gênero: " + EnumConverter.convertGender(profile.getGender()));
+        textEthnicity.setText("Etnia: " + EnumConverter.convertEthnicity(profile.getEthnicity()));
+        textEducation.setText("Educação: " + EnumConverter.convertEducation(profile.getEducation()));
+        textMaritalStatus.setText("Estado civil: " + EnumConverter.convertMaritalStatus(profile.getMaritalStatus()));
+        textDesiredRelationship.setText("Deseja: " + EnumConverter.convertDesiredRelationship(profile.getDesiredRelationship()));
+        textProfession.setText("Profissão: " + profile.getProfession());
+        textBio.setText("Bio: " + profile.getBio());
+
+        if (profile.getProfilePicture() != null) {
+            // Se vier imagem em base64 ou bytes, você pode converter e exibir com Glide/Picasso
+        } else {
+            imageProfile.setImageResource(R.drawable.perfil_padrao);
+        }
+
+        interests.clear();
+        interests.addAll(profile.getInterests());
+        interestsAdapter.notifyDataSetChanged();
     }
 }
