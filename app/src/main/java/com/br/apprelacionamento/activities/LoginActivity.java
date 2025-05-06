@@ -17,6 +17,7 @@ import com.br.apprelacionamento.R;
 import com.br.apprelacionamento.activities.MainNavigationActivity;
 import com.br.apprelacionamento.api.ApiClient;
 import com.br.apprelacionamento.api.ApiInterface;
+import com.br.apprelacionamento.models.InterestsRequest;
 import com.br.apprelacionamento.models.LoginRequest;
 import com.br.apprelacionamento.models.LoginResponse;
 import com.br.apprelacionamento.models.ProfileRequest;
@@ -28,6 +29,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -142,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                 toRequestBody("Ensino_Superior"),
                 toRequestBody("Solteiro"),
                 toRequestBody("Namoro"),
-                toRequestBody("Oi, estou usando Encontros"),
+                toRequestBody("Oi, estou usando Encontro"),
                 toRequestBody("Não informado"),
                 foto,
                 toRequestBody("1"),
@@ -154,6 +157,29 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Log.d("PERFIL", "Perfil criado com sucesso!");
+
+                    // Agora envia os interesses padrão
+                    List<String> defaultInterests = Arrays.asList("falta cadastrar");
+                    InterestsRequest interestsRequest = new InterestsRequest(defaultInterests);
+
+                    ApiInterface authApi = ApiClient.getApiServiceWithAuth(LoginActivity.this);
+                    Call<Void> interestsCall = authApi.createInterests(interestsRequest);
+
+                    interestsCall.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if (response.isSuccessful()) {
+                                Log.d("INTERESSES", "Interesses cadastrados com sucesso!");
+                            } else {
+                                Log.e("INTERESSES", "Erro ao cadastrar interesses: " + response.code());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Log.e("INTERESSES", "Falha ao cadastrar interesses: " + t.getMessage());
+                        }
+                    });
                 } else {
                     Log.e("PERFIL", "Erro ao criar perfil: " + response.message());
                 }

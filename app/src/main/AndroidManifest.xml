@@ -57,6 +57,12 @@
             android:exported="true">
         </activity>
 
+        <!-- Tela de edição do perfil -->
+        <activity
+            android:name=".activities.EditarPerfilActivity"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>

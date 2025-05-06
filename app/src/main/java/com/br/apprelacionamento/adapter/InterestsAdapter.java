@@ -13,7 +13,7 @@ import com.br.apprelacionamento.R;
 
 import java.util.List;
 
-public class InterestsAdapter extends RecyclerView.Adapter<InterestsAdapter.InterestViewHolder> {
+public class InterestsAdapter extends RecyclerView.Adapter<InterestsAdapter.ViewHolder> {
 
     private List<String> interests;
 
@@ -21,15 +21,25 @@ public class InterestsAdapter extends RecyclerView.Adapter<InterestsAdapter.Inte
         this.interests = interests;
     }
 
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView textInterest;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            textInterest = itemView.findViewById(R.id.textInterest);
+        }
+    }
+
     @NonNull
     @Override
-    public InterestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_interest, parent, false);
-        return new InterestViewHolder(view);
+    public InterestsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_interest, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InterestViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textInterest.setText(interests.get(position));
     }
 
@@ -37,13 +47,5 @@ public class InterestsAdapter extends RecyclerView.Adapter<InterestsAdapter.Inte
     public int getItemCount() {
         return interests.size();
     }
-
-    public static class InterestViewHolder extends RecyclerView.ViewHolder {
-        TextView textInterest;
-
-        public InterestViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textInterest = itemView.findViewById(R.id.textInterest);
-        }
-    }
 }
+
