@@ -1,10 +1,14 @@
 package com.br.apprelacionamento.api;
 
+import com.br.apprelacionamento.models.ChatMessage;
 import com.br.apprelacionamento.models.LoginRequest;
 import com.br.apprelacionamento.models.LoginResponse;
 import com.br.apprelacionamento.models.UserRequest;
 import com.br.apprelacionamento.models.ProfileResponseDTO;
 import com.br.apprelacionamento.models.ProfileRequestDTO;
+import com.br.apprelacionamento.models.Contact;  // Importe a classe Contact, se não estiver importada
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -38,4 +42,15 @@ public interface ApiService {
     @POST("/profile/{userId}")
     Call<ResponseBody> createProfile(@Path("userId") int userId);
 
+    // Endpoint para enviar uma nova mensagem de chat
+    @POST("chat/messages")
+    Call<ChatMessage> sendMessage(@Body ChatMessage chatMessage);
+
+    // Endpoint para buscar todas as mensagens entre dois usuários (usando os IDs de remetente e destinatário)
+    @GET("chat/messages/{senderId}/{receiverId}")
+    Call<List<ChatMessage>> getMessages(@Path("senderId") int senderId, @Path("receiverId") int receiverId);
+
+    // Endpoint para buscar os contatos que deram match
+    @GET("matches")
+    Call<List<Contact>> getMatchedContacts();
 }

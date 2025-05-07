@@ -31,6 +31,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -44,9 +47,24 @@ dependencies {
     implementation ("com.google.android.material:material:1.11.0")
     implementation(libs.viewpager2)
     implementation("com.google.firebase:firebase-messaging:23.4.1")
+    implementation(libs.activity)
+    implementation(libs.constraintlayout)
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Unidade de tamanho escalável (suporte para diferentes tamanhos de tela)
+    implementation("com.intuit.sdp:sdp-android:1.0.6")
+    implementation("com.intuit.ssp:ssp-android:1.0.6")
+
+    // Rounded ImageView
+    implementation("com.makeramen:roundedimageview:2.3.0")
+
+    //Multidex
+    implementation("androidx.multidex:multidex:2.0.1")
+
+    //Adicionar a versao do do postgresSQL
+
 
 }

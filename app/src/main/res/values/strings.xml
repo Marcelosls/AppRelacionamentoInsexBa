@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">AppRelacionamento</string>
+    <string name="type_a_massage">Mensagem ...</string>
+    <string name="contacts">Contatos</string>
 
     <string-array name="gender_array">
         <item>Selecione um Genero</item>

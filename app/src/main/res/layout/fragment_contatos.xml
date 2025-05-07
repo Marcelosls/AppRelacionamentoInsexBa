@@ -5,6 +5,7 @@
     android:background="#FFF">
 
     <TextView
+        android:id="@+id/btnAbrirContatos"
         android:layout_gravity="center"
         android:text="contatos"
         android:textSize="24sp"
