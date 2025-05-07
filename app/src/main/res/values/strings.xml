@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppRelacionamento</string>
+    <string name="app_name">Encontro</string>
     <string name="icone" />
     <string-array name="desired_relationship_array">
         <item>Selecione um o relacionamento desejado</item>
