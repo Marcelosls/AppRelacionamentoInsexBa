@@ -1,49 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Logo fixo no topo -->
-    <ImageView
-        android:id="@+id/logoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="41dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:contentDescription="Logo do App"
-        android:src="@drawable/logo_app_transparente" />
-
-    <!-- Texto abaixo da logo -->
-    <TextView
-        android:id="@+id/txtNomeApp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_gravity="center_horizontal"
-        android:text="ENCONTRO"
-        android:textColor="#D2B162"
-        android:textSize="14sp"
-        android:fontFamily="@font/playfairdisplay_italic"
-        android:textStyle="bold" />
-
-    <!-- ViewPager2 no meio -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
+    <!-- CONTEÚDO PRINCIPAL -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!-- BottomNavigationView com 3 ícones -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="@color/bottom_nav_selector"
-        app:itemTextColor="@color/bottom_nav_selector"
-        android:background="?android:attr/windowBackground" />
+        <!-- TOPO COM LOGO E ÍCONE DE ENGENHAGEM -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp">
 
-</LinearLayout>
+            <ImageView
+                android:id="@+id/logoImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="41dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="Logo do App"
+                android:src="@drawable/logo_app_transparente" />
+
+            <ImageView
+                android:id="@+id/settingsIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="Configurações"
+                android:src="@drawable/ic_settings" /> <!-- Use um ícone de engrenagem -->
+        </RelativeLayout>
+
+        <!-- Texto abaixo da logo -->
+        <TextView
+            android:id="@+id/txtNomeApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal"
+            android:text="ENCONTRO"
+            android:textColor="#D2B162"
+            android:textSize="14sp"
+            android:fontFamily="@font/playfairdisplay_italic"
+            android:textStyle="bold" />
+
+        <!-- ViewPager2 no meio -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <!-- BottomNavigationView -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_nav_menu"
+            app:itemIconTint="@color/bottom_nav_selector"
+            app:itemTextColor="@color/bottom_nav_selector"
+            android:background="?android:attr/windowBackground" />
+    </LinearLayout>
+
+    <!-- DRAWER DE CONFIGURAÇÕES -->
+    <LinearLayout
+        android:id="@+id/configDrawer"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configurações"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sair da Conta"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#800020"/>
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
