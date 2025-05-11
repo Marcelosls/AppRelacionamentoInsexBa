@@ -1,21 +1,13 @@
 package com.br.apprelacionamento.fragments;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.br.apprelacionamento.R;
+import com.br.apprelacionamento.activities.InteressesActivity;
 import com.br.apprelacionamento.activities.EditarPerfilActivity;
 import com.br.apprelacionamento.adapter.EnumConverter;
 import com.br.apprelacionamento.adapter.InterestsAdapter;
@@ -35,7 +28,6 @@ import com.br.apprelacionamento.models.ProfileResponse;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -77,7 +69,12 @@ public class PerfilFragment extends Fragment {
 
         recyclerViewInterests = view.findViewById(R.id.recyclerViewInterests);
         recyclerViewInterests.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        interestsAdapter = new InterestsAdapter(interests);
+        interestsAdapter = new InterestsAdapter(interests, interest -> {
+            // Ao clicar em um interesse, abre a tela de edição
+            Intent intent = new Intent(requireContext(), InteressesActivity.class);
+            startActivity(intent);
+        });
+
         recyclerViewInterests.setAdapter(interestsAdapter);
 
         carregarPerfil();
@@ -86,6 +83,13 @@ public class PerfilFragment extends Fragment {
 
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        carregarPerfil(); // aqui você faz a requisição GET para buscar os dados atualizados
+    }
+
 
     private void carregarPerfil() {
         SharedPreferences preferences = requireActivity().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);

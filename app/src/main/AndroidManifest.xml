@@ -67,6 +67,14 @@
         </activity>
 
 
+        <!-- Tela de edição de interesses-->
+        <activity
+            android:name=".activities.InteressesActivity"
+            android:exported="true">
+        </activity>
+
+
+
 
     </application>
 
