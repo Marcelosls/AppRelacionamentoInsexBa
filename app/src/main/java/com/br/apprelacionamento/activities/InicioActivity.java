@@ -1,99 +1,107 @@
 package com.br.apprelacionamento.activities;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.Button;
-import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.br.apprelacionamento.activities.LoginActivity;
-import com.br.apprelacionamento.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InicioActivity extends AppCompatActivity {
 
-    private Button btnLogin, btnCadastro;
+    private static final String TAG = "FCM";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Verifica se o token de autenticação está salvo
-        SharedPreferences preferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        String token = preferences.getString("authToken", null);
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                        return;
+                    }
 
-        if (token != null && !token.isEmpty()) {
-            // Usuário já está autenticado → vai direto pra tela principal
-            Intent intent = new Intent(InicioActivity.this, MainNavigationActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        } else {
-            // Usuário não está logado → mostra tela de login/cadastro
-            setContentView(R.layout.activity_inicio);
+                    // Obtém o token
+                    String token = task.getResult();
+                    Log.d(TAG, "Token manual: " + token);
 
-            TextView textView = findViewById(R.id.txtNomeApp);
+                    // Envia o token para o servidor
+                    enviarTokenParaServidor(token);
+                });
+    }
 
-            textView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    textView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+    private void enviarTokenParaServidor(String token) {
+        // Corpo da requisição
+        NotificacaoRequest request = new NotificacaoRequest(
+                "Você tem um novo match!",
+                "Alguém gostou de você ❤️",
+                null,
+                token,
+                new HashMap<>() // Pode adicionar dados extras aqui se quiser
+        );
 
-                    Shader textShader = new LinearGradient(
-                            0, 0, textView.getWidth(), 0,
-                            new int[]{
-                                    Color.parseColor("#D2B162"),
-                                    Color.parseColor("#A67C00"),
-                                    Color.parseColor("#D2B162")
-                            },
-                            new float[]{0f, 0.5f, 1f},
-                            Shader.TileMode.CLAMP
-                    );
-
-                    textView.getPaint().setShader(textShader);
-                    textView.invalidate();
-                }
-            });
-
-            btnLogin = findViewById(R.id.btnLogin);
-            btnCadastro = findViewById(R.id.btnCadastro);
-
-            btnLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(InicioActivity.this, LoginActivity.class));
-                }
-            });
-
-            btnCadastro.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(InicioActivity.this, RegisterActivity.class));
-                }
-            });
-
-            // Aqui é o token do Firebase Cloud Messaging (FCM), pode continuar usando esse nome
-            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    String fcmToken = task.getResult(); // ← troquei o nome da variável para evitar conflito
-                    Log.d("FCM", "Token gerado: " + fcmToken);
-                }
-            });
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+        ApiService api = RetrofitClient.getApiService();
+        api.enviarNotificacao(request).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d(TAG, "Notificação enviada com sucesso");
             }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.e(TAG, "Erro ao enviar notificação", t);
+            }
+        });
+    }
+
+    // RetrofitClient interno
+    public static class RetrofitClient {
+        private static final String BASE_URL = "http://10.0.2.2:8080";
+        private static Retrofit retrofit;
+
+        public static ApiService getApiService() {
+            if (retrofit == null) {
+                retrofit = new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+            }
+            return retrofit.create(ApiService.class);
         }
     }
 
+    // Interface da API
+    public interface ApiService {
+        @retrofit2.http.Headers("Content-Type: application/json")
+        @retrofit2.http.POST("/notification/notification/token")
+        Call<Void> enviarNotificacao(@retrofit2.http.Body NotificacaoRequest request);
+    }
+
+    // Modelo da requisição
+    public static class NotificacaoRequest {
+        private String title;
+        private String body;
+        private String image;
+        private String recipientToken;
+        private Map<String, String> data;
+
+        public NotificacaoRequest(String title, String body, String image, String recipientToken, Map<String, String> data) {
+            this.title = title;
+            this.body = body;
+            this.image = image;
+            this.recipientToken = recipientToken;
+            this.data = data;
+        }
+    }
 }

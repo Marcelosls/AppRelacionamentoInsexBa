@@ -23,12 +23,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onNewToken(@NonNull String token) {
-        Log.d("FCM", "Token: " + token);
-        // Envie esse token para o servidor se necessário
+        super.onNewToken(token);
+        Log.d("FCM_TOKEN", "Token: " + token);
+        // Enviar token para o servidor aqui, se necessário
     }
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+        Log.d("FCM_MESSAGE", "Mensagem recebida: " + remoteMessage.getData());
+
         String title = remoteMessage.getNotification() != null ? remoteMessage.getNotification().getTitle() : "Título";
         String body = remoteMessage.getNotification() != null ? remoteMessage.getNotification().getBody() : "Mensagem";
 
