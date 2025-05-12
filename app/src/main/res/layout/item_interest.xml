@@ -3,7 +3,7 @@
     android:id="@+id/textInterest"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_interest_chip"
+    android:background="@drawable/gradient_gold"
     android:textColor="@color/outros"
     android:padding="8dp"
     android:layout_marginEnd="8dp"
