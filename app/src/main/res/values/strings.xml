@@ -11,36 +11,34 @@
 
     <string-array name="ethnicity_array">
         <item>Selecione uma etnia</item>
-        <item>Branco(a)</item>
-        <item>Preto(a)</item>
-        <item>Pardo(a)</item>
-        <item>Amarelo(a)</item>
-        <item>Indígena(a)</item>
+        <item>Branco</item>
+        <item>Preto</item>
+        <item>Pardo</item>
+        <item>Asiatico</item>
+        <item>Indigena</item>
         <item>Outro</item>
     </string-array>
 
     <string-array name="education_array">
         <item>Selecione uma escolaridade</item>
-        <item>Ensino Fundamental</item>
-        <item>Ensino Médio</item>
-        <item>Ensino Superior</item>
-        <item>Pós-Graduação</item>
+        <item>Ensino_Fundamental</item>
+        <item>Ensino_Médio</item>
+        <item>Ensino_Superior</item>
+        <item>Pós_graduação</item>
     </string-array>
 
     <string-array name="marital_status_array">
         <item>Selecione um estado civil</item>
-        <item>Solteiro(a)</item>
-        <item>Casado(a)</item>
-        <item>Divorciado(a)</item>
-        <item>Viúvo(a)</item>
+        <item>Solteiro</item>
+        <item>Casado</item>
+        <item>Divorciado</item>
+        <item>Viuvo</item>
     </string-array>
 
     <string-array name="gender_array">
         <item>Selecione um Genero</item>
         <item>Masculino</item>
         <item>Feminino</item>
-        <item>Não-Binário</item>
+        <item>Nao_Binario</item>
     </string-array>
 </resources>
-
-

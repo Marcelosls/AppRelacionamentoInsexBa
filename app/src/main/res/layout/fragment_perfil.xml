@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="Nome Sobrenome, Idade"
             android:textColor="@color/outros"
-            android:textSize="20sp"
+            android:textSize="26sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
 
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/outros"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
 
                 <!-- ETNIA -->
         <TextView
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/outros"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
 
         <!-- ESCOLARIDADE -->
         <TextView
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/outros"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
 
         <!-- ESTADO CIVIL -->
         <TextView
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/outros"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
 
         <!-- RELAÇÃO DESEJADA -->
         <TextView
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/outros"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
 
         <!-- PROFISSÃO -->
         <TextView
@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/outros"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
 
         <!-- BIO -->
         <TextView
@@ -98,9 +98,10 @@
             android:layout_height="wrap_content"
             android:textColor="@color/outros"
             android:text="Bio"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp" />
+            android:textSize="22sp"
+            android:layout_marginTop="22dp" />
 
+        <!-- futuro botão de edição
         <Button
             android:id="@+id/btnEditProfile"
             android:layout_width="216dp"
@@ -116,7 +117,7 @@
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="14dp"
-            android:textStyle="bold" />
+            android:textStyle="bold" /> -->
 
     </LinearLayout>
 </ScrollView>

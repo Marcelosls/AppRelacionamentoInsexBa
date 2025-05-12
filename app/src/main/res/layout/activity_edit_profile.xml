@@ -1,0 +1,109 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Imagem de perfil -->
+        <ImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/perfil_padrao"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnChooseImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escolher imagem"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/editFirstName"
+            android:hint="Nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+
+        <EditText
+            android:id="@+id/editLastName"
+            android:hint="Sobrenome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+
+        <EditText
+            android:id="@+id/editAge"
+            android:hint="Idade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:padding="8dp"/>
+
+        <EditText
+            android:id="@+id/editProfession"
+            android:hint="Profissão"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+
+        <EditText
+            android:id="@+id/editBio"
+            android:hint="Bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+
+        <!-- Spinners para enums -->
+        <Spinner
+            android:id="@+id/spinnerGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerEthnicity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerEducation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerMaritalStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerDesiredRelationship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+
+        <Button
+            android:id="@+id/btnEditInterests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar Interesses"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnSaveProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+</ScrollView>

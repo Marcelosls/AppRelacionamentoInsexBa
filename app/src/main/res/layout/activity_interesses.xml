@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/ic_love_logo"
+            android:src="@drawable/logo_app_transparente"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/icone"
             android:layout_marginTop="15dp"/>
@@ -28,7 +28,7 @@
             android:text="O que curte?"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#800020"
+            android:textColor="@color/outros"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="10dp"/>
 
@@ -100,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CONTINUAR"
-            android:backgroundTint="#800020"
+            android:backgroundTint="@color/outros"
             android:textColor="@android:color/white"
             android:layout_marginTop="24dp" />
 

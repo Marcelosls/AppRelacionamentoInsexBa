@@ -1,4 +1,4 @@
-package com.br.apprelacionamento.adapter;
+package com.br.apprelacionamento.aux;
 
 public class EnumConverter {
 

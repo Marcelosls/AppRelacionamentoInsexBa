@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="92dp"
-            android:text="CADASTRO"
+            android:text="CRIE SEU PERFIL"
             android:textColor="@color/titulos"
             android:textSize="24sp"
             android:textStyle="bold"

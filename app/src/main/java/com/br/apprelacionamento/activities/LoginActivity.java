@@ -14,13 +14,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.br.apprelacionamento.R;
-import com.br.apprelacionamento.activities.MainNavigationActivity;
 import com.br.apprelacionamento.api.ApiClient;
 import com.br.apprelacionamento.api.ApiInterface;
 import com.br.apprelacionamento.models.InterestsRequest;
 import com.br.apprelacionamento.models.LoginRequest;
 import com.br.apprelacionamento.models.LoginResponse;
-import com.br.apprelacionamento.models.ProfileRequest;
 import com.br.apprelacionamento.models.ProfileResponse;
 
 import org.json.JSONObject;
@@ -120,11 +118,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
                 if (!response.isSuccessful() || response.body() == null) {
-                    // Perfil ainda não criado → criar perfil padrão
-                    criarPerfilPadrao(token);
+                    // Vai para tela de cadastro de perfil
+                    Intent intent = new Intent(LoginActivity.this, ProfileCreationActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    Log.d("LOGIN", "Perfil já existente.");
+                    // Perfil já existe → vai para tela principal
+                    startActivity(new Intent(LoginActivity.this, MainNavigationActivity.class));
+                    finish();
                 }
+
             }
 
             @Override
@@ -170,6 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.isSuccessful()) {
                                 Log.d("INTERESSES", "Interesses cadastrados com sucesso!");
+
                             } else {
                                 Log.e("INTERESSES", "Erro ao cadastrar interesses: " + response.code());
                             }
