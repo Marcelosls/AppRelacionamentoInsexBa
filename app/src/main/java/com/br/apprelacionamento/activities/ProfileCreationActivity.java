@@ -48,6 +48,7 @@ public class ProfileCreationActivity extends AppCompatActivity {
 
     private Spinner relationshipSpinner, ethnicitySpinner, educationSpinner, maritalStatusSpinner;
     private EditText bioEditText;
+    private EditText professionEditText;
     private Button saveButton, selectImageButton;
     private ImageView profileImageView;
 
@@ -68,6 +69,8 @@ public class ProfileCreationActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.btnSave);
         selectImageButton = findViewById(R.id.btnSelectImage);
         profileImageView = findViewById(R.id.imgProfilePreview);
+        professionEditText = findViewById(R.id.edtProfession);
+
 
         api = ApiClient.getApiServiceWithAuth(ProfileCreationActivity.this);
 
@@ -79,15 +82,27 @@ public class ProfileCreationActivity extends AppCompatActivity {
     }
 
     private void loadSpinners() {
-        relationshipSpinner.setAdapter(ArrayAdapter.createFromResource(this,
-                R.array.desired_relationship_array, android.R.layout.simple_spinner_item));
-        ethnicitySpinner.setAdapter(ArrayAdapter.createFromResource(this,
-                R.array.ethnicity_array, android.R.layout.simple_spinner_item));
-        educationSpinner.setAdapter(ArrayAdapter.createFromResource(this,
-                R.array.education_array, android.R.layout.simple_spinner_item));
-        maritalStatusSpinner.setAdapter(ArrayAdapter.createFromResource(this,
-                R.array.marital_status_array, android.R.layout.simple_spinner_item));
+        ArrayAdapter<CharSequence> relationshipAdapter = ArrayAdapter.createFromResource(
+                this, R.array.desired_relationship_array, R.drawable.spinner_item);
+        relationshipAdapter.setDropDownViewResource(R.drawable.spinner_dropdown_item);
+        relationshipSpinner.setAdapter(relationshipAdapter);
+
+        ArrayAdapter<CharSequence> ethnicityAdapter = ArrayAdapter.createFromResource(
+                this, R.array.ethnicity_array, R.drawable.spinner_item);
+        ethnicityAdapter.setDropDownViewResource(R.drawable.spinner_dropdown_item);
+        ethnicitySpinner.setAdapter(ethnicityAdapter);
+
+        ArrayAdapter<CharSequence> educationAdapter = ArrayAdapter.createFromResource(
+                this, R.array.education_array, R.drawable.spinner_item);
+        educationAdapter.setDropDownViewResource(R.drawable.spinner_dropdown_item);
+        educationSpinner.setAdapter(educationAdapter);
+
+        ArrayAdapter<CharSequence> maritalAdapter = ArrayAdapter.createFromResource(
+                this, R.array.marital_status_array, R.drawable.spinner_item);
+        maritalAdapter.setDropDownViewResource(R.drawable.spinner_dropdown_item);
+        maritalStatusSpinner.setAdapter(maritalAdapter);
     }
+
 
     private void requestImagePermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -174,7 +189,8 @@ public class ProfileCreationActivity extends AppCompatActivity {
         RequestBody educationBody = toRequestBody(education);
         RequestBody maritalStatusBody = toRequestBody(maritalStatus);
         RequestBody bioBody = toRequestBody(bio);
-        RequestBody professionBody = toRequestBody("Profissão Exemplo");
+        String profession = professionEditText.getText().toString().trim();
+        RequestBody professionBody = toRequestBody(profession);
         RequestBody ageBody = toRequestBody("25");
         RequestBody interestsBody = toRequestBody("teste");
 
