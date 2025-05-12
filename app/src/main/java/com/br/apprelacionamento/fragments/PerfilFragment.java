@@ -3,7 +3,11 @@ package com.br.apprelacionamento.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +23,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.br.apprelacionamento.R;
 import com.br.apprelacionamento.activities.InteressesActivity;
-import com.br.apprelacionamento.activities.EditarPerfilActivity;
-import com.br.apprelacionamento.adapter.EnumConverter;
-import com.br.apprelacionamento.adapter.InterestsAdapter;
+import com.br.apprelacionamento.activities.EditProfileActivity;
+import com.br.apprelacionamento.aux.EnumConverter;
+import com.br.apprelacionamento.aux.InterestsAdapter;
 import com.br.apprelacionamento.api.ApiClient;
 import com.br.apprelacionamento.api.ApiInterface;
 import com.br.apprelacionamento.models.ProfileResponse;
@@ -50,12 +54,12 @@ public class PerfilFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
-        Button btnEditProfile = view.findViewById(R.id.btnEditProfile);
+        /*Button btnEditProfile = view.findViewById(R.id.btnEditProfile);
         btnEditProfile.setOnClickListener(v -> {
             // Inicia a Activity de edição de perfil
-            Intent intent = new Intent(requireContext(), EditarPerfilActivity.class);
+            Intent intent = new Intent(requireContext(), EditProfileActivity.class);
             startActivity(intent);
-        });
+        }); */
 
         imageProfile = view.findViewById(R.id.imageProfile);
         textNameAge = view.findViewById(R.id.textNameAge);
@@ -128,11 +132,19 @@ public class PerfilFragment extends Fragment {
         textProfession.setText("Profissão: " + profile.getProfession());
         textBio.setText("Bio: " + profile.getBio());
 
-        if (profile.getProfilePicture() != null) {
-            // Se vier imagem em base64 ou bytes, você pode converter e exibir com Glide/Picasso
+        if (profile.getProfilePicture() != null && !profile.getProfilePicture().isEmpty()) {
+            try {
+                byte[] imageBytes = Base64.decode(profile.getProfilePicture(), Base64.DEFAULT);
+                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                imageProfile.setImageBitmap(decodedBitmap);
+            } catch (Exception e) {
+                imageProfile.setImageResource(R.drawable.perfil_padrao);
+                Log.e("PerfilFragment", "Erro ao decodificar imagem", e);
+            }
         } else {
             imageProfile.setImageResource(R.drawable.perfil_padrao);
         }
+
 
         interests.clear();
         interests.addAll(profile.getInterests());

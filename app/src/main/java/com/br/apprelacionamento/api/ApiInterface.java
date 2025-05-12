@@ -16,6 +16,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -47,6 +48,23 @@ public interface ApiInterface {
     @POST("/insexba/interests")
     Call<Void> createInterests(@Body InterestsRequest interestsRequest);
 
+    @Multipart
+    @PUT("change/profile")
+    Call<Void> updateProfile(
+            @Header("Authorization") String token,
+            @Part("firstName") RequestBody firstName,
+            @Part("lastName") RequestBody lastName,
+            @Part("age") RequestBody age,
+            @Part("gender") RequestBody gender,
+            @Part("ethnicity") RequestBody ethnicity,
+            @Part("education") RequestBody education,
+            @Part("maritalStatus") RequestBody maritalStatus,
+            @Part("desiredRelationship") RequestBody desiredRelationship,
+            @Part("bio") RequestBody bio,
+            @Part("profession") RequestBody profession,
+            @Part("interests") RequestBody interests,
+            @Part MultipartBody.Part profilePicture // pode ser null
+    );
 
 
 }

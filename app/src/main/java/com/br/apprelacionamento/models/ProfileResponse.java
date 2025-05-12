@@ -31,6 +31,19 @@ public class ProfileResponse {
     public String getProfilePicture() { return profilePicture; }
 
     // Setters (opcional, dependendo se você for editar esse perfil depois)
+    // Setters
+    public void setEthnicity(String ethnicity) { this.ethnicity = ethnicity; }
+    public void setEducation(String education) { this.education = education; }
+    public void setMaritalStatus(String maritalStatus) { this.maritalStatus = maritalStatus; }
+    public void setDesiredRelationship(String desiredRelationship) { this.desiredRelationship = desiredRelationship; }
+    public void setBio(String bio) { this.bio = bio; }
+    public void setProfession(String profession) { this.profession = profession; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setAge(int age) { this.age = age; }
+    public void setGender(String gender) { this.gender = gender; }
+    public void setInterests(List<String> interests) { this.interests = interests; }
+    public void setProfilePicture(String profilePicture) { this.profilePicture = profilePicture; }
 
 
 }

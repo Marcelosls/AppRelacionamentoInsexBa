@@ -59,7 +59,7 @@
 
         <!-- Tela de edição do perfil -->
         <activity
-            android:name=".activities.EditarPerfilActivity"
+            android:name=".activities.EditProfileActivity"
             android:exported="true">
         </activity>
 
@@ -70,7 +70,11 @@
             android:exported="true">
         </activity>
 
-
+        <!-- Tela de cadastrar perfil -->
+        <activity
+            android:name=".activities.ProfileCreationActivity"
+            android:exported="true">
+        </activity>
 
 
     </application>
