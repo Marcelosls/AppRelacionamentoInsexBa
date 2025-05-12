@@ -132,9 +132,12 @@ public class PerfilFragment extends Fragment {
         textProfession.setText("Profissão: " + profile.getProfession());
         textBio.setText("Bio: " + profile.getBio());
 
-        if (profile.getProfilePicture() != null && !profile.getProfilePicture().isEmpty()) {
+        // Aqui trocamos o campo utilizado para imagem
+        String base64Image = profile.getProfilePictureBase64(); // novo campo
+
+        if (base64Image != null && !base64Image.isEmpty()) {
             try {
-                byte[] imageBytes = Base64.decode(profile.getProfilePicture(), Base64.DEFAULT);
+                byte[] imageBytes = Base64.decode(base64Image, Base64.DEFAULT);
                 Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
                 imageProfile.setImageBitmap(decodedBitmap);
             } catch (Exception e) {
@@ -145,9 +148,9 @@ public class PerfilFragment extends Fragment {
             imageProfile.setImageResource(R.drawable.perfil_padrao);
         }
 
-
         interests.clear();
         interests.addAll(profile.getInterests());
         interestsAdapter.notifyDataSetChanged();
     }
+
 }
