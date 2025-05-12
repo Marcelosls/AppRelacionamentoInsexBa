@@ -7,17 +7,17 @@ public class UserRequest {
     private String email;
     private String birthData; // formato "yyyy-MM-dd"
     private String gender;     // Ex: "Masculino", "Feminino", "Nao_Binario"
-    private String typeUser;   // Sempre "Usuario"
+    private String user;   // Sempre "Usuario"
 
     public UserRequest(String firstName, String lastName, String password, String email,
-                       String birthData, String gender, String typeUser) {
+                       String birthData, String gender, String user) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
         this.birthData = birthData;
         this.gender = gender;
-        this.typeUser = typeUser;
+        this.user = user;
     }
 
     // Getters e Setters (se forem necessários)

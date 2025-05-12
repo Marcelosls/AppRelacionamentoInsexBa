@@ -15,8 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.br.apprelacionamento.R;
 import com.br.apprelacionamento.adapters.ChatAdapter;
-
-import com.br.apprelacionamento.api.ApiService;
+import com.br.apprelacionamento.api.ApiInterface;
 import com.br.apprelacionamento.api.ContactsClient;
 import com.br.apprelacionamento.models.ChatMessage;
 import com.br.apprelacionamento.models.User;
@@ -35,7 +34,7 @@ public class ChatActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private ChatAdapter chatAdapter;
     private User currentUser;
-    private int receiverId ;
+    private int receiverId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class ChatActivity extends AppCompatActivity {
         initViews();
 
         currentUser = getUserData();
-        receiverId = getIntent().getIntExtra("receiverId", -1); // Recebe o ID do destinatário
+        receiverId = getIntent().getIntExtra("receiverId", -1); // ID do destinatário
         setupRecyclerView(currentUser.getId());
 
         loadMessages();
@@ -76,7 +75,7 @@ public class ChatActivity extends AppCompatActivity {
     private void loadMessages() {
         progressBar.setVisibility(View.VISIBLE);
 
-        ApiService apiService = ContactsClient.getClient().create(ApiService.class);
+        ApiInterface apiService = ContactsClient.getClient().create(ApiInterface.class);
         int senderId = currentUser.getId();
 
         apiService.getMessages(senderId, receiverId).enqueue(new Callback<List<ChatMessage>>() {
@@ -100,7 +99,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessage(String messageText) {
-        ApiService apiService = ContactsClient.getClient().create(ApiService.class);
+        ApiInterface apiService = ContactsClient.getClient().create(ApiInterface.class);
 
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setSenderId(currentUser.getId());
@@ -138,8 +137,7 @@ public class ChatActivity extends AppCompatActivity {
         user.setId(userId);
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        // Caso queira adcionar um setter para o email no futuro, descomente a linha abaixo
-        // user.setEmail(email);
+        // user.setEmail(email); // se necessário
 
         return user;
     }

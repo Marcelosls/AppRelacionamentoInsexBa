@@ -2,11 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.br.apprelacionamento">
+
     <!-- 🛡️ Permissões -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
 
     <application
         android:allowBackup="true"
@@ -18,20 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppRelacionamento"
         tools:targetApi="31"
-         >
+        android:usesCleartextTraffic="true">
 
-        <activity
-            android:name=".activities.ContactsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.ChatActivity"
-            android:exported="false" /> <!-- Tela inicial do app -->
-        <activity
-            android:name=".activities.InicioActivity"
+        <!-- Tela inicial do app -->
+        <activity android:name=".activities.InicioActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,17 +37,41 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service> <!-- Tela de cadastro do app -->
+        </service>
+
+        <!-- Tela de cadastro do app -->
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize|stateHidden" /> <!-- Tela de login do app -->
+            android:windowSoftInputMode="adjustResize|stateHidden">
+        </activity>
+
+        <!-- Tela de login do app -->
         <activity
             android:name=".activities.LoginActivity"
-            android:exported="true" /> <!-- Tela principal com o ViewPager (onde estão os fragments) -->
+            android:exported="true">
+        </activity>
+
+        <!-- Tela principal com o ViewPager (onde estão os fragments) -->
         <activity
             android:name=".activities.MainNavigationActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
+
+        <!-- Tela de edição do perfil -->
+        <activity
+            android:name=".activities.EditarPerfilActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".activities.ContactsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ChatActivity"
+            android:exported="false" />
+
+
     </application>
 
 </manifest>

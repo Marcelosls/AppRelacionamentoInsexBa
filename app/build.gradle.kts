@@ -31,9 +31,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -47,8 +44,7 @@ dependencies {
     implementation ("com.google.android.material:material:1.11.0")
     implementation(libs.viewpager2)
     implementation("com.google.firebase:firebase-messaging:23.4.1")
-    implementation(libs.activity)
-    implementation(libs.constraintlayout)
+    implementation(libs.firebase.messaging)
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
@@ -63,8 +59,5 @@ dependencies {
 
     //Multidex
     implementation("androidx.multidex:multidex:2.0.1")
-
-    //Adicionar a versao do do postgresSQL
-
 
 }

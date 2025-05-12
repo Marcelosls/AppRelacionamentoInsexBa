@@ -1,15 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="#FFF"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_gravity="center"
-        android:text="Perfil"
-        android:textSize="24sp"
-        android:textColor="@color/outros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- FOTO DE PERFIL -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/perfil_padrao"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Foto de Perfil"
+            app:shapeAppearanceOverlay="@style/RoundedImage" />
+
+
+        <!-- NOME, SOBRENOME, IDADE -->
+        <TextView
+            android:id="@+id/textNameAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome Sobrenome, Idade"
+            android:textColor="@color/outros"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp" />
+
+        <!-- INTERESSES -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewInterests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp" />
+
+        <!-- GÊNERO -->
+        <TextView
+            android:id="@+id/textGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/outros"
+            android:textSize="16sp" />
+
+                <!-- ETNIA -->
+        <TextView
+            android:id="@+id/textEthnicity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/outros"
+            android:textSize="16sp" />
+
+        <!-- ESCOLARIDADE -->
+        <TextView
+            android:id="@+id/textEducation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/outros"
+            android:textSize="16sp" />
+
+        <!-- ESTADO CIVIL -->
+        <TextView
+            android:id="@+id/textMaritalStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/outros"
+            android:textSize="16sp" />
+
+        <!-- RELAÇÃO DESEJADA -->
+        <TextView
+            android:id="@+id/textDesiredRelationship"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/outros"
+            android:textSize="16sp" />
+
+        <!-- PROFISSÃO -->
+        <TextView
+            android:id="@+id/textProfession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/outros"
+            android:textSize="16sp" />
+
+        <!-- BIO -->
+        <TextView
+            android:id="@+id/textBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/outros"
+            android:text="Bio"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:layout_width="216dp"
+            android:layout_height="53dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/outros"
+            android:drawableLeft="@android:drawable/ic_menu_edit"
+            android:drawablePadding="8dp"
+            android:paddingVertical="12dp"
+            android:text="EDITAR PERFIL"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>
 

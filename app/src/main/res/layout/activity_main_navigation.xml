@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_gravity="center_horizontal"
-        android:text="ENLACE"
+        android:text="ENCONTRO"
         android:textColor="#D2B162"
         android:textSize="14sp"
         android:fontFamily="@font/playfairdisplay_italic"
