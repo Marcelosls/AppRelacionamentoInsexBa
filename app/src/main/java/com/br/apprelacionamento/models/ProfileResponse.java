@@ -15,6 +15,7 @@ public class ProfileResponse {
     private String gender;
     private List<String> interests;
     private String profilePicture; // pode ser null ou base64 futuramente
+    private String profilePictureBase64;
 
     // Getters
     public String getEthnicity() { return ethnicity; }
@@ -29,6 +30,7 @@ public class ProfileResponse {
     public String getGender() { return gender; }
     public List<String> getInterests() { return interests; }
     public String getProfilePicture() { return profilePicture; }
+    public String getProfilePictureBase64() { return profilePictureBase64; }
 
     // Setters (opcional, dependendo se você for editar esse perfil depois)
     // Setters
@@ -44,6 +46,7 @@ public class ProfileResponse {
     public void setGender(String gender) { this.gender = gender; }
     public void setInterests(List<String> interests) { this.interests = interests; }
     public void setProfilePicture(String profilePicture) { this.profilePicture = profilePicture; }
+    public void setProfilePictureBase64(String profilePictureBase64) { this.profilePictureBase64 = profilePictureBase64; }
 
 
 }
